@@ -889,6 +889,63 @@
         .panel-card p strong { color: var(--ink); }
         .panel-card .card-icon { color: var(--em); opacity: 0.5; }
 
+        /* ════════════════ COLLAPSIBLE METHOD DETAILS ════════════════ */
+        .method-details { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+        .method-detail {
+            background: var(--panel);
+            border: 1px solid var(--rule-soft);
+            border-left: 3px solid var(--rule-soft);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.28s, box-shadow 0.28s;
+        }
+        .method-detail:hover { border-left-color: var(--em); }
+        .method-detail[open] { border-left-color: var(--em); box-shadow: var(--sh-card); }
+        .method-detail summary {
+            list-style: none;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 15px 22px;
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--ink);
+            letter-spacing: -0.005em;
+        }
+        .method-detail summary::-webkit-details-marker { display: none; }
+        .method-detail summary::before {
+            content: '+';
+            flex: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px; height: 22px;
+            border-radius: 7px;
+            border: 1px solid var(--rule-soft);
+            color: var(--em);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .method-detail[open] summary::before {
+            content: '\2212';
+            background: var(--em-light);
+            border-color: var(--em);
+        }
+        .method-detail p {
+            margin: 0;
+            padding: 0 22px 18px 58px;
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .method-detail p strong { color: var(--ink); }
+
         .card-icon {
             position: absolute;
             top: 18px;
@@ -909,6 +966,22 @@
             color: var(--em-glow);
             margin: 0 0 10px;
         }
+        /* numbered / flagged step badge in card headers */
+        .card-step { display: flex; align-items: center; gap: 11px; margin: 0 0 14px; }
+        .card-step .card-tag { margin: 0; }
+        .step-num {
+            flex: none;
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px;
+            border-radius: 9px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700; font-size: 0.98rem; line-height: 1;
+            color: var(--em-glow);
+            background: rgba(158, 177, 202, 0.16);
+            border: 1px solid rgba(158, 177, 202, 0.55);
+        }
+        .step-num.warn  { color: var(--baseline-terracotta); border-color: rgba(181, 107, 92, 0.55); background: rgba(181, 107, 92, 0.12); }
+        .step-num.warn2 { color: var(--baseline-ochre);      border-color: rgba(176, 139, 69, 0.55); background: rgba(176, 139, 69, 0.12); }
         .card-title {
             font-family: 'Fraunces', serif;
             font-weight: 700;
@@ -1875,6 +1948,8 @@
             margin: 18px 0;
         }
         @media (max-width: 640px) { .lim-list { grid-template-columns: 1fr; } }
+        .lim-list.lim-row3 { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 760px) { .lim-list.lim-row3 { grid-template-columns: 1fr; } }
         .lim-item {
             background: var(--panel);
             border: 1px solid var(--rule-soft);
@@ -1899,4 +1974,32 @@
             color: var(--ink-soft);
             margin: 0;
         }
+
+        /* placeholder tile standing in for a not-yet-added rollout video */
+        .vid-placeholder {
+            aspect-ratio: 16 / 9;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: #14181f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            text-align: center;
+            padding: 12px;
+            color: rgba(227, 236, 230, 0.55);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
+            position: relative; z-index: 1;
+        }
+        .vid-placeholder .ph-icon { font-size: 1.5rem; opacity: 0.5; margin-bottom: 4px; }
+
+        /* centered, wrapping gallery (FPO / RialTo failure clips) — last row stays centered */
+        .fail-gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 18px; }
+        .fail-gallery > figure { flex: 0 1 calc(33.333% - 8px); min-width: 220px; margin: 0; }
+        .fail-gallery video { width: 100%; border-radius: 10px; display: block; background: #000; }
+        @media (max-width: 600px) { .fail-gallery > figure { flex-basis: 100%; } }
 
