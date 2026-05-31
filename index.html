@@ -6,7 +6,7 @@
     <title>SCORE: Support-Constrained Off-Domain Real-world Exploration</title>
     <meta name="description" content="Support-Constrained RL Enables Real-World Policy Improvement without Real-World Experience">
 
-    <link rel="preload" as="video" href="static/videos/SCOREv4.mp4" type="video/mp4" fetchpriority="high">
+    <link rel="preload" as="video" href="static/videos/SCOREv5.mp4" type="video/mp4" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -50,7 +50,7 @@
 
     <figure class="polaroid teaser-polaroid">
         <video id="hero-teaser-video" autoplay loop muted playsinline preload="auto" fetchpriority="high">
-            <source src="static/videos/SCOREv4.mp4" type="video/mp4">
+            <source src="static/videos/SCOREv5.mp4" type="video/mp4">
         </video>
     </figure>
 
@@ -64,7 +64,7 @@
     <header class="sec-head">
         <span class="sigma-rule"></span>
         <h2 class="sec-title">The Problem</h2>
-        <p class="sec-lead">Simulation can improve policies &mdash; but it can also break them.</p>
+        <p class="sec-lead">Simulation can improve policies, but it can also break them.</p>
     </header>
 
     <p class="body-text">
@@ -72,7 +72,7 @@
     </p>
 
     <p class="body-text">
-        But simulation is a double-edged sword. Existing methods sit at two extremes &mdash; optimizing <strong>freely</strong> in sim, or tightly <strong>constraining</strong> the policy to the demonstration distribution &mdash; and each extreme fails in its own way:
+        But simulation is a double-edged sword. Existing methods sit at two extremes. They either optimize <strong>freely</strong> in sim, or tightly <strong>constrain</strong> the policy to the demonstration distribution, and each extreme fails in its own way:
     </p>
 
     <div class="card-grid card-grid-3" style="margin-top:22px;">
@@ -84,7 +84,7 @@
         <article class="panel-card" style="border-left-color:var(--baseline-ochre);">
             <div class="card-step"><span class="step-num warn2">&#9888;</span><span class="card-tag" style="color:var(--baseline-ochre);">Failure Mode B</span></div>
             <h4 class="card-title">Distributional regularization</h4>
-            <p>BC constraints keep policies close to the base policy &mdash; but too little regularization lets the policy reward-hack, while too much preserves the base policy&rsquo;s slow, imprecise, or failed behaviors.</p>
+            <p>BC constraints keep policies close to the base policy. With too little regularization the policy reward-hacks; with too much it preserves the base policy&rsquo;s slow, imprecise, or failed behaviors.</p>
         </article>
         <article class="emerald-card">
             <div class="card-step"><span class="step-num">&#10003;</span><span class="card-tag">Our approach</span></div>
@@ -104,11 +104,11 @@
     <header class="sec-head">
         <span class="sigma-rule"></span>
         <h2 class="sec-title">Method</h2>
-        <p class="sec-lead">Steer through the support &mdash; don&rsquo;t escape it.</p>
+        <p class="sec-lead">Steer through the support, don&rsquo;t escape it.</p>
     </header>
 
     <p class="body-text">
-        To improve a policy in simulation without leaving what works in the real world, SCORE answers three questions &mdash; each handled by one component:
+        To improve a policy in simulation without leaving what works in the real world, SCORE answers three questions, each handled by one component:
     </p>
 
     <div class="card-grid card-grid-3" style="margin-top:22px;">
@@ -125,7 +125,7 @@
         <article class="emerald-card">
             <div class="card-step"><span class="step-num">3</span><span class="card-tag">Direct Deployment</span></div>
             <h4 class="card-title">How does it reach the robot?</h4>
-            <p>Directly &mdash; <strong>no distillation, no finetuning.</strong> The actor is trained on deployment-compatible observations, with no distillation from a privileged state policy and no sim-to-real fine-tuning stage.</p>
+            <p>Directly, with <strong>no distillation and no finetuning.</strong> The actor is trained on deployment-compatible observations, with no distillation from a privileged state policy and no sim-to-real fine-tuning stage.</p>
         </article>
     </div>
 
@@ -162,7 +162,7 @@
     <div class="results-duo" id="results-charts" style="margin-top:24px;">
         <div class="result-callout xl-callout">
             <div class="big">89.9%</div>
-            <div class="desc"><strong>Average success rate</strong> after SCORE, up from 37.9% for the base policy &mdash; a 2.4&times; improvement across eight tasks.</div>
+            <div class="desc"><strong>Average success rate</strong> after SCORE, up from 37.9% for the base policy, a 2.4&times; improvement across eight tasks.</div>
         </div>
         <div class="rchart">
             <div class="rchart-title">Success Rate</div>
@@ -249,11 +249,6 @@
         Unconstrained RL in simulation can achieve high reward in simulation while learning behavior that is erratic or dangerous on physical hardware. SCORE avoids these failure modes by keeping the steering policy within the support of the real-world behavior prior.
     </p>
 
-    <figure style="margin:24px auto 0; max-width:420px; text-align:center;">
-        <img src="static/images/fpo_broken_finger.jpg" alt="FPO policy broke the robot finger" style="width:100%; border-radius:12px; box-shadow:0 12px 32px rgba(0,0,0,0.28);">
-        <figcaption class="cap" style="margin-top:10px;"><strong>Unconstrained optimization can damage hardware.</strong> Repeated high-force, unstable grasps eventually broke one of our hand&rsquo;s fingers.</figcaption>
-    </figure>
-
     <div class="fail-gallery">
         <figure>
             <video src="static/videos/real_world_rollouts/soccer_push/fpo/ep_000.mp4" autoplay loop muted playsinline></video>
@@ -261,19 +256,23 @@
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/bottle_grasp/fpo/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">The policy applies excessive, unstable force while grasping the bottle &mdash; a strategy that does not transfer reliably to hardware.</figcaption>
+            <figcaption class="cap" style="margin-top:6px;">The policy applies excessive, unstable force while grasping the bottle. This strategy does not transfer reliably to hardware.</figcaption>
         </figure>
         <figure>
             <video src="static/videos/extras/ep_001.mp4" autoplay loop muted playsinline></video>
             <figcaption class="cap" style="margin-top:6px;">The policy rotates the bulb by friction against the palm, nearly toppling the light stand despite us taping it down. It achieves some success, but is far from the safest strategy.</figcaption>
         </figure>
         <figure>
+            <video src="static/videos/extras/ep_003.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="cap" style="margin-top:6px;">While attempting to grasp the credit card, the policy applies a large force on the block, causing unexpected motion and complete failure in the real world.</figcaption>
+        </figure>
+        <figure>
             <video src="static/videos/extras/ep_002.mp4" autoplay loop muted playsinline></video>
             <figcaption class="cap" style="margin-top:6px;">All the accumulated stress on the fingers from these repeated, high-force grasps eventually takes its toll on the hand.</figcaption>
         </figure>
         <figure>
-            <video src="static/videos/extras/ep_003.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">While attempting to grasp the credit card, the policy applies a large force on the block, causing unexpected motion and complete failure in the real world.</figcaption>
+            <img src="static/images/fpo_broken_finger.jpg" alt="FPO policy broke the robot finger" style="width:100%; border-radius:10px; display:block;">
+            <figcaption class="cap" style="margin-top:6px;"><strong>Unconstrained optimization can damage hardware.</strong> Repeated high-force, unstable grasps eventually broke one of our hand&rsquo;s fingers.</figcaption>
         </figure>
     </div>
 </section>
@@ -296,7 +295,7 @@
         </a>
         <figcaption>
             <strong>Distributional constraints introduce a tradeoff between improvement and transferability.</strong>
-            The left plot shows the simulated (circles) and real-world (diamonds) performance of RialTo policies trained with five levels of BC regularization during BC-PPO. A coefficient of <em>10</em> collapses in simulation, reaching 0% success, while <em>100</em> learns a dangerous strategy far from the base policy distribution (top film strip). At the other extreme, <em>100k</em> over-constrains learning and retains the base policy&rsquo;s suboptimal failure modes (bottom film strip). The middle ground of <em>10k</em> reaches 60% real-world success &mdash; above the base policy&rsquo;s 30%, but far below SCORE&rsquo;s 100%.
+            The left plot shows the simulated (circles) and real-world (diamonds) performance of RialTo policies trained with five levels of BC regularization during BC-PPO. A coefficient of <em>10</em> collapses in simulation, reaching 0% success, while <em>100</em> learns a dangerous strategy far from the base policy distribution (top film strip). At the other extreme, <em>100k</em> over-constrains learning and retains the base policy&rsquo;s suboptimal failure modes (bottom film strip). The middle ground of <em>10k</em> reaches 60% real-world success, above the base policy&rsquo;s 30% but far below SCORE&rsquo;s 100%.
         </figcaption>
     </figure>
 
@@ -306,19 +305,19 @@
     <div class="fail-gallery">
         <figure>
             <video src="static/videos/real_world_rollouts/soccer_push/rialto/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">A really dangerous motion &mdash; in sim the policy drags its fingers across the table, which is hazardous on the real robot.</figcaption>
+            <figcaption class="cap" style="margin-top:6px;">A really dangerous motion. In sim the policy drags its fingers across the table, which is hazardous on the real robot.</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/bottle_grasp/rialto/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">The policy applies excessive, unstable force while grasping the bottle &mdash; a strategy that does not transfer reliably to hardware.</figcaption>
+            <figcaption class="cap" style="margin-top:6px;">The policy applies excessive, unstable force while grasping the bottle. This strategy does not transfer reliably to hardware.</figcaption>
         </figure>
         <figure>
             <video src="static/videos/extras/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">The policy learns an unintuitive swooping motion to pick up the cube, ending in an unstable pinch grasp &mdash; these violent motions put a lot of stress on the hand.</figcaption>
+            <figcaption class="cap" style="margin-top:6px;">The policy learns an unintuitive swooping motion to pick up the cube, ending in an unstable pinch grasp. These violent motions put a lot of stress on the hand.</figcaption>
         </figure>
         <figure>
             <video src="static/videos/extras/ep_004.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="cap" style="margin-top:6px;">Here the fingers all move laterally downward, pushing into the table &mdash; a dangerous behavior that often leads to failures.</figcaption>
+            <figcaption class="cap" style="margin-top:6px;">Here the fingers all move laterally downward, pushing into the table. This dangerous behavior often leads to failures.</figcaption>
         </figure>
         <figure>
             <video src="static/videos/extras/ep_005.mp4" autoplay loop muted playsinline></video>
@@ -332,17 +331,17 @@
     <header class="sec-head">
         <span class="sigma-rule"></span>
         <h2 class="sec-title">Limitations &amp; Future Directions</h2>
-        <p class="sec-lead">SCORE inherits the limits of its prior &mdash; and that points the way forward.</p>
+        <p class="sec-lead">SCORE inherits the limits of its prior, and that points the way forward.</p>
     </header>
 
     <p class="body-text">
-        What SCORE can reach is shaped by the coverage of its real-world prior. The experiments below make this concrete &mdash; one shows how far steering can push a prior toward a new goal, the other shows where it stalls when the prior is too narrow.
+        What SCORE can reach is shaped by the coverage of its real-world prior. The experiments below make this concrete. One shows how far steering can push a prior toward a new goal; the other shows where it stalls when the prior is too narrow.
     </p>
 
     <!-- ── Carrot: steering to a new object ── -->
     <h3 class="sub-head">Steering to a new object: bottle &rarr; carrot</h3>
     <p class="body-text">
-        We reuse a frozen <strong>bottle-grasp</strong> base policy and steer it in simulation by replacing the bottle with a carrot &mdash; an object the base policy was never trained on. A carrot is much thinner than a bottle and demands a precise pinch, a behavior that appears only with very low probability under the bottle-grasp prior. Even so, steering surfaces this rare in-support behavior: compared against the same policy <em>steered to grasp a bottle</em>, the carrot-steered policy improves substantially &mdash; showing that behaviors already in the prior&rsquo;s support can be repurposed toward new goals.
+        We reuse a frozen <strong>bottle-grasp</strong> base policy and steer it in simulation by replacing the bottle with a carrot, an object the base policy was never trained on. A carrot is much thinner than a bottle and demands a precise pinch, a behavior that appears only with very low probability under the bottle-grasp prior. Even so, steering surfaces this rare in-support behavior: compared against the same policy <em>steered to grasp a bottle</em>, the carrot-steered policy improves substantially, showing that behaviors already in the prior&rsquo;s support can be repurposed toward new goals.
     </p>
     <div class="rollout-grid">
         <div class="rollout-col">
@@ -360,13 +359,13 @@
     <!-- ── Distractor: where the representation runs thin ── -->
     <h3 class="sub-head" style="margin-top:38px;">Where it falls short: the limits of the representation</h3>
     <p class="body-text">
-        The same bottle-grasp policy was trained on real data <strong>without distractors</strong>. Steering it in simulation to handle an added distractor recovers a lot of performance &mdash; 56% real-world success, up from 0% for the base policy and 11% for SCORE without distractors. But the simulation success map below reveals the catch: the policy succeeds almost only when the bottle is on one side of the workspace (&asymp;41.5% overall), defaulting to the right. The base policy&rsquo;s coverage and representation are too thin to absorb distractors across the whole workspace, so steering inherits a spatial bias rather than true robustness.
+        The same bottle-grasp policy was trained on real data <strong>without distractors</strong>. Steering it in simulation to handle an added distractor recovers a lot of performance: 56% real-world success, up from 0% for the base policy and 11% for SCORE without distractors. But the simulation success map below reveals the catch: the policy succeeds almost only when the bottle is on one side of the workspace (&asymp;41.5% overall), defaulting to the right. The base policy&rsquo;s coverage and representation are too thin to absorb distractors across the whole workspace, so steering inherits a spatial bias rather than true robustness.
     </p>
     <div class="rollout-grid">
         <div class="rollout-col">
             <div class="rollout-col-title">SCORE <em>(without distractors)</em></div>
             <video src="static/videos/future/distractor/clean/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note base-note"><span class="note-tag">✗ Out-of-distribution</span>A distractor puts the base policy out-of-distribution, and the steering policy never learned to steer it through one &mdash; so it struggles.</div>
+            <div class="rollout-note base-note"><span class="note-tag">✗ Out-of-distribution</span>A distractor puts the base policy out-of-distribution, and the steering policy never learned to steer it through one, so it struggles.</div>
         </div>
         <div class="rollout-col emerald-col">
             <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
@@ -381,8 +380,8 @@
         </a>
         <figcaption>
             <strong>Quantitative results.</strong>
-            <em>Left:</em> steering a bottle-grasp base policy to a carrot reaches 67% real-world success &mdash; far above steering it to a bottle (22%), while a cup base cannot be steered to the carrot at all (0%).
-            <em>Right:</em> with a distractor, steering lifts real-world success to 56% (from 0% base and 11% SCORE without distractors), but the simulation success map shows it succeeds mainly when the bottle is on one side of the workspace (&asymp;41.5%) &mdash; a spatial bias, not full robustness.
+            <em>Left:</em> steering a bottle-grasp base policy to a carrot reaches 67% real-world success, far above steering it to a bottle (22%), while a cup base cannot be steered to the carrot at all (0%).
+            <em>Right:</em> with a distractor, steering lifts real-world success to 56% (from 0% base and 11% SCORE without distractors), but the simulation success map shows it succeeds mainly when the bottle is on one side of the workspace (&asymp;41.5%), a spatial bias rather than full robustness.
         </figcaption>
     </figure>
 
@@ -397,7 +396,7 @@
     <div class="lim-list lim-row3">
         <div class="lim-item">
             <div class="lim-label">Simulating the Right Physics</div>
-            <p>SCORE is limited to behaviors the simulator can model faithfully. Rigid-body contact and randomized dynamics transfer well, but phenomena like deformables, cloth, and fluids remain hard to simulate accurately &mdash; restricting the tasks SCORE can currently improve.</p>
+            <p>SCORE is limited to behaviors the simulator can model faithfully. Rigid-body contact and randomized dynamics transfer well, but phenomena like deformables, cloth, and fluids remain hard to simulate accurately, which restricts the tasks SCORE can currently improve.</p>
         </div>
         <div class="lim-item">
             <div class="lim-label">Observations</div>
@@ -422,7 +421,7 @@
             box-shadow:0 30px 80px rgba(0,0,0,0.6);
             display:block;
         ">
-            <source src="static/videos/SCOREv4.mp4" type="video/mp4">
+            <source src="static/videos/SCOREv5.mp4" type="video/mp4">
         </video>
         <button onclick="closeVideoLb()" style="
             position:absolute; top:-14px; right:-14px;
