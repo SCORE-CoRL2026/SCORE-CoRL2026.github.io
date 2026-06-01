@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-    <link rel="stylesheet" href="static/style.css?v=20260527a">
+    <link rel="stylesheet" href="static/style.css?v=20260601d">
 </head>
 <body>
 
@@ -134,8 +134,8 @@
     </p>
 
     <figure class="polaroid wide-polaroid" style="margin-top:14px;">
-        <a href="#" data-lb="static/figures/method.png">
-            <img src="static/figures/method.png" alt="SCORE method overview">
+        <a href="#" data-lb="static/figures/method2.png">
+            <img src="static/figures/method2.png" alt="SCORE method overview">
         </a>
         <figcaption>
             <strong>SCORE pipeline.</strong>
@@ -198,6 +198,43 @@
                 <div class="rbar-val">17.8%</div>
             </div>
         </div>
+    </div>
+
+    <h3 class="sub-head" style="margin-top:32px;">SCORE in action</h3>
+    <p class="body-text">SCORE solving all eight tasks.</p>
+    <div class="task-gallery">
+        <figure>
+            <video src="static/videos/real_world_rollouts/ball_pour/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Ball Pour</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/soccer_push/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Soccer Push</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/lightbulb_screw/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Lightbulb Screw</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/credit_card_pick/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Credit Card Pick</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/dishrack_place/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Dishrack Place</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/cube_pinch/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Cube Pinch</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/bottle_grasp/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Bottle Grasp</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/real_world_rollouts/cup_grasp/score/ep_000.mp4" autoplay loop muted playsinline></video>
+            <figcaption>Cup Grasp</figcaption>
+        </figure>
     </div>
 
     <h3 class="sub-head" style="margin-top:32px;">Per-task rollouts</h3>
@@ -400,7 +437,7 @@
         </div>
         <div class="lim-item">
             <div class="lim-label">Observations</div>
-            <p>Because the simulator cannot render diverse, photorealistic environments at scale, we operate on point clouds and proprioception rather than RGB images. This sidesteps much of the visual sim-to-real gap, but point clouds strip away much of the semantic meaning that RGB carries.</p>
+            <p>Because the simulator cannot render diverse, photorealistic environments at scale, we operate on point clouds and proprioception rather than RGB images. This sidesteps much of the visual sim-to-real gap, but point clouds strip away the semantic meaning that RGB carries.</p>
         </div>
         <div class="lim-item">
             <div class="lim-label">Scaling to Broader Priors</div>
