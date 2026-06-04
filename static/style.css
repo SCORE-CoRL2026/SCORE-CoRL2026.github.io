@@ -1095,11 +1095,11 @@
         .tab-btn,
         .rw-tab {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.70rem;
             font-weight: 700;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border: 1.5px solid var(--rule);
             border-radius: 999px;
             background: var(--bg);
@@ -1107,10 +1107,12 @@
             cursor: pointer;
             transition: all 0.18s ease;
             white-space: nowrap;
+            flex: 0 0 auto;
         }
         .tab-btn:hover, .rw-tab:hover { background: var(--em-light); color: var(--em); border-color: var(--em); }
         .tab-btn.active, .rw-tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-        .rw-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+        .rw-tabs { display: flex; flex-wrap: nowrap; gap: 6px; margin: 14px 0; overflow-x: auto; scrollbar-width: none; }
+        .rw-tabs::-webkit-scrollbar { display: none; }
 
         /* SIGMA SLIDER */
         .sweep-card {
@@ -2014,4 +2016,71 @@
             background: rgba(20, 28, 40, 0.72); backdrop-filter: blur(2px);
         }
         @media (max-width: 700px) { .task-gallery { grid-template-columns: repeat(2, 1fr); } }
+
+        /* base-vs-SCORE basket timelapse */
+        .basket-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+        .basket-duo > figure { margin: 0; }
+        .basket-duo video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: 10px; background: #000; }
+        .basket-duo figcaption {
+            margin-top: 8px; font-family: 'Fraunces', serif; font-size: 0.9rem;
+            line-height: 1.45; color: var(--ink-soft);
+        }
+        .basket-tag {
+            display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+            font-weight: 600; letter-spacing: 0.03em; padding: 2px 7px; border-radius: 6px; margin-right: 6px;
+        }
+        .base-tag { color: #b5532f; background: rgba(181, 83, 47, 0.12); }
+        .score-tag { color: var(--em-glow); background: rgba(16, 185, 129, 0.12); }
+        @media (max-width: 700px) { .basket-duo { grid-template-columns: 1fr; } }
+
+        /* EXTRAS section: tabbed base-vs-SCORE toggle */
+        .ex-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
+        .ex-tab, .ms-tab {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.70rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase; padding: 6px 12px;
+            border: 1.5px solid var(--rule); border-radius: 999px; background: var(--bg);
+            color: var(--ink); cursor: pointer; transition: all 0.18s ease; white-space: nowrap; flex: 0 0 auto;
+        }
+        .ex-tab:hover, .ms-tab:hover { background: var(--em-light); color: var(--em); border-color: var(--em); }
+        .ex-tab.active, .ms-tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+        .ms-tabs { display: flex; flex-wrap: nowrap; gap: 6px; margin: 14px 0; overflow-x: auto; scrollbar-width: none; }
+        .ms-tabs::-webkit-scrollbar { display: none; }
+        .ms-cell { position: relative; margin: 0; border-radius: 8px; overflow: hidden; background: #000; }
+        .ms-cell video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+
+        /* FPO-in-simulation gallery (failures section) */
+        .fpo-sim-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+        .fpo-sim-gallery > figure { margin: 0; position: relative; border-radius: 10px; overflow: hidden; background: #000; }
+        .fpo-sim-gallery video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+        @media (max-width: 700px) { .fpo-sim-gallery { grid-template-columns: repeat(2, 1fr); } }
+        .ex-vid-col { display: flex; flex-direction: column; gap: 8px; }
+        .ex-cell { position: relative; margin: 0; border-radius: 8px; overflow: hidden; background: #000; }
+        .ex-cell video { width: 100%; object-fit: cover; display: block; }
+        .ex-chip {
+            position: absolute; left: 8px; top: 8px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; font-weight: 600;
+            letter-spacing: 0.02em; color: #fff; padding: 3px 8px; border-radius: 6px;
+            background: rgba(20, 28, 40, 0.72); backdrop-filter: blur(2px);
+        }
+
+        /* featured "bonus" highlight below a comparison */
+        .ex-bonus {
+            display: grid; grid-template-columns: minmax(0, 320px) 1fr; align-items: center;
+            gap: 24px; margin-top: 22px; padding: 22px 28px;
+            background: var(--panel);
+            border: 1px solid var(--rule-soft); border-left: 3px solid var(--em);
+            border-radius: 14px; box-shadow: var(--sh-card);
+        }
+        .ex-bonus .ex-cell { width: 100%; }
+        .ex-bonus-tag {
+            display: inline-block; margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--em);
+            padding: 3px 9px; border-radius: 999px; background: var(--em-light);
+        }
+        .ex-bonus-text p {
+            margin: 0; font-family: 'Fraunces', serif; font-size: 0.98rem;
+            line-height: 1.55; color: var(--ink-soft);
+        }
+        @media (max-width: 700px) { .ex-bonus { grid-template-columns: 1fr; } }
 

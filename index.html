@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-    <link rel="stylesheet" href="static/style.css?v=20260601d">
+    <link rel="stylesheet" href="static/style.css?v=20260604g">
 </head>
 <body>
 
@@ -145,6 +145,31 @@
         </figcaption>
     </figure>
 
+    <h3 class="sub-head" style="margin-top:38px;">Improvement in simulation</h3>
+    <p class="body-text">Inside the simulator, support-constrained RL steers the base policy toward higher-reward modes. We leverage massive domain randomization to make the resulting policies robust, randomizing object pose and placement, scale, mass, and applying force perturbations and forced resets, among others. Select a task to compare the base policy against SCORE in simulation.</p>
+
+    <div class="ms-tabs">
+        <button class="ms-tab active" data-ms="credit_card"   onclick="msSetTab(this)">Pick Credit Card</button>
+        <button class="ms-tab"        data-ms="dishrack_place" onclick="msSetTab(this)">Place in Dishrack</button>
+        <button class="ms-tab"        data-ms="lightbulb_screw" onclick="msSetTab(this)">Screw Lightbulb</button>
+        <button class="ms-tab"        data-ms="soccer_push"   onclick="msSetTab(this)">Push Soccer Ball</button>
+        <button class="ms-tab"        data-ms="cup_pour"      onclick="msSetTab(this)">Pour Ball</button>
+        <button class="ms-tab"        data-ms="bottle_grasp"  onclick="msSetTab(this)">Grasp Bottle</button>
+        <button class="ms-tab"        data-ms="cup_grasp"     onclick="msSetTab(this)">Grasp Cup</button>
+        <button class="ms-tab"        data-ms="cube_grasp"    onclick="msSetTab(this)">Pinch Cube</button>
+    </div>
+
+    <div class="rollout-grid">
+        <div class="rollout-col">
+            <div class="rollout-col-title">Base</div>
+            <div id="ms-base" class="ms-vid"></div>
+        </div>
+        <div class="rollout-col emerald-col">
+            <div class="rollout-col-title">SCORE <em>(ours)</em></div>
+            <div id="ms-score" class="ms-vid"></div>
+        </div>
+    </div>
+
 </section>
 
 <!-- ════════════════ REAL-WORLD RESULTS ════════════════ -->
@@ -205,35 +230,35 @@
     <div class="task-gallery">
         <figure>
             <video src="static/videos/real_world_rollouts/ball_pour/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Ball Pour</figcaption>
+            <figcaption>Pour Ball</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/soccer_push/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Soccer Push</figcaption>
+            <figcaption>Push Soccer Ball</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/lightbulb_screw/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Lightbulb Screw</figcaption>
+            <figcaption>Screw Lightbulb</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/credit_card_pick/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Credit Card Pick</figcaption>
+            <figcaption>Pick Credit Card</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/dishrack_place/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Dishrack Place</figcaption>
+            <figcaption>Place in Dishrack</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/cube_pinch/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Cube Pinch</figcaption>
+            <figcaption>Pinch Cube</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/bottle_grasp/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Bottle Grasp</figcaption>
+            <figcaption>Grasp Bottle</figcaption>
         </figure>
         <figure>
             <video src="static/videos/real_world_rollouts/cup_grasp/score/ep_000.mp4" autoplay loop muted playsinline></video>
-            <figcaption>Cup Grasp</figcaption>
+            <figcaption>Grasp Cup</figcaption>
         </figure>
     </div>
 
@@ -241,14 +266,14 @@
     <p class="body-text">Select a task to see base policy versus SCORE rollouts, qualitative analysis, and per-task results. SCORE produces faster, more precise, and more robust behavior while remaining within the support of the real-world behavior prior.</p>
 
     <div class="rw-tabs">
-        <button class="rw-tab active" data-task="ball_pour"        onclick="rwSetTask(this)">Ball Pour</button>
-        <button class="rw-tab"        data-task="soccer_push"      onclick="rwSetTask(this)">Soccer Push</button>
-        <button class="rw-tab"        data-task="lightbulb_screw"  onclick="rwSetTask(this)">Lightbulb Screw</button>
-        <button class="rw-tab"        data-task="credit_card_pick" onclick="rwSetTask(this)">Credit Card Pick</button>
-        <button class="rw-tab"        data-task="dishrack_place"   onclick="rwSetTask(this)">Dishrack Place</button>
-        <button class="rw-tab"        data-task="cube_pinch"       onclick="rwSetTask(this)">Cube Pinch</button>
-        <button class="rw-tab"        data-task="bottle_grasp"     onclick="rwSetTask(this)">Bottle Grasp</button>
-        <button class="rw-tab"        data-task="cup_grasp"        onclick="rwSetTask(this)">Cup Grasp</button>
+        <button class="rw-tab active" data-task="ball_pour"        onclick="rwSetTask(this)">Pour Ball</button>
+        <button class="rw-tab"        data-task="soccer_push"      onclick="rwSetTask(this)">Push Soccer Ball</button>
+        <button class="rw-tab"        data-task="lightbulb_screw"  onclick="rwSetTask(this)">Screw Lightbulb</button>
+        <button class="rw-tab"        data-task="credit_card_pick" onclick="rwSetTask(this)">Pick Credit Card</button>
+        <button class="rw-tab"        data-task="dishrack_place"   onclick="rwSetTask(this)">Place in Dishrack</button>
+        <button class="rw-tab"        data-task="cube_pinch"       onclick="rwSetTask(this)">Pinch Cube</button>
+        <button class="rw-tab"        data-task="bottle_grasp"     onclick="rwSetTask(this)">Grasp Bottle</button>
+        <button class="rw-tab"        data-task="cup_grasp"        onclick="rwSetTask(this)">Grasp Cup</button>
     </div>
 
     <div class="rollout-grid">
@@ -274,6 +299,36 @@
 
 </section>
 
+<!-- ════════════════ EXTRAS ════════════════ -->
+<section class="page-section fade-in" id="sec-extras">
+    <header class="sec-head">
+        <span class="sigma-rule"></span>
+        <h2 class="sec-title">Going Further</h2>
+        <p class="sec-lead">A few more things SCORE can do.</p>
+    </header>
+
+    <div class="ex-tabs">
+        <button class="ex-tab active" data-ex="continuous" onclick="exSetTab(this)">Continuous Grasp</button>
+        <button class="ex-tab"        data-ex="cleanex"    onclick="exSetTab(this)">Open Cleanex</button>
+        <button class="ex-tab"        data-ex="multitask"  onclick="exSetTab(this)">Multi-Task</button>
+    </div>
+
+    <p id="ex-blurb" class="body-text"></p>
+
+    <div class="rollout-grid">
+        <div class="rollout-col">
+            <div class="rollout-col-title">Base</div>
+            <div id="ex-base-grid" class="ex-vid-col"></div>
+        </div>
+        <div class="rollout-col emerald-col">
+            <div class="rollout-col-title">SCORE <em>(ours)</em></div>
+            <div id="ex-score-grid" class="ex-vid-col"></div>
+        </div>
+    </div>
+
+    <div id="ex-bonus" class="ex-bonus"></div>
+</section>
+
 <!-- ════════════════ FAILURE COMPARISONS ════════════════ -->
 <section class="page-section fade-in" id="sec-failures">
     <header class="sec-head">
@@ -286,6 +341,29 @@
         Unconstrained RL in simulation can achieve high reward in simulation while learning behavior that is erratic or dangerous on physical hardware. SCORE avoids these failure modes by keeping the steering policy within the support of the real-world behavior prior.
     </p>
 
+    <h3 class="sub-head" style="margin-top:32px;">What unconstrained optimization learns in simulation</h3>
+    <p class="body-text">Optimizing freely with FPO, the policy maximizes reward in simulation through contorted, high-force strategies that exploit the simulator. These behaviors look effective in sim but do not transfer to hardware.</p>
+    <div class="fpo-sim-gallery">
+        <figure>
+            <video src="static/videos/sim_fpo/bottle_grasp.mp4?v=20260604b" autoplay loop muted playsinline></video>
+            <figcaption class="ex-chip">Grasp Bottle</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/sim_fpo/dishrack_place.mp4?v=20260604b" autoplay loop muted playsinline></video>
+            <figcaption class="ex-chip">Screw Lightbulb</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/sim_fpo/cup_pour.mp4?v=20260604b" autoplay loop muted playsinline></video>
+            <figcaption class="ex-chip">Pick Credit Card</figcaption>
+        </figure>
+        <figure>
+            <video src="static/videos/sim_fpo/soccer_push.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="ex-chip">Push Soccer Ball</figcaption>
+        </figure>
+    </div>
+    <p class="cap" style="margin-top:10px; color:var(--ink-muted);">Note: the original lightbulb asset did not transfer well under the FPO policy, so the lightbulb example here uses a different asset.</p>
+
+    <h3 class="sub-head" style="margin-top:32px;">And how it behaves on hardware</h3>
     <div class="fail-gallery">
         <figure>
             <video src="static/videos/real_world_rollouts/soccer_push/fpo/ep_000.mp4" autoplay loop muted playsinline></video>
@@ -441,7 +519,7 @@
         </div>
         <div class="lim-item">
             <div class="lim-label">Scaling to Broader Priors</div>
-            <p>SCORE currently trains a separate steering policy per task. Scaling to a single policy that can steer a broad, multi-task prior across diverse task distributions is an open direction for future work.</p>
+            <p>SCORE typically trains a separate steering policy per task, though our multi-task result shows a single steering policy can already steer a prior across a few tasks at once. Scaling this to a much broader, more diverse prior, with one policy steering across many tasks and distributions, remains an open direction for future work.</p>
         </div>
     </div>
 </section>
@@ -489,7 +567,9 @@
 
 <!-- ════════════════ SCRIPTS ════════════════ -->
 <script src="static/js/sweep.js"></script>
-<script src="static/js/rollout.js?v=20260528v"></script>
+<script src="static/js/rollout.js?v=20260604b"></script>
+<script src="static/js/extras.js?v=20260604h"></script>
+<script src="static/js/methods_sim.js?v=20260604b"></script>
 <script src="static/js/qualitative.js"></script>
 <script src="static/js/barcharts.js"></script>
 <script src="static/js/task-results.js?v=20260528q"></script>

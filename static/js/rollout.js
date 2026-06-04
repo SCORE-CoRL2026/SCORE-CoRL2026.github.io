@@ -34,7 +34,7 @@
                             score: "SCORE reaches 100% success, so we show a single clip with perturbations to illustrate the robustness of steering in simulation." },
         bottle_grasp:     { base: "The base policy shows suboptimal and failed attempts followed by retries. It succeeds most of the time but cannot handle perturbations.",
                             score: "SCORE is robust to perturbations and reaches 100% success." },
-        cup_grasp:        { base: "As in Cup Pour, the main failure is misaligning the thumb with the cup, which knocks it over.",
+        cup_grasp:        { base: "As in Pour Ball, the main failure is misaligning the thumb with the cup, which knocks it over.",
                             score: "SCORE reaches 100% success, enabling high-precision grasping of the cup." }
     };
 
