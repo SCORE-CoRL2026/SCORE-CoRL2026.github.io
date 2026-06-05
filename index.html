@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
-    <link rel="stylesheet" href="static/style.css?v=20260604g">
+    <link rel="stylesheet" href="static/style.css?v=20260604h">
 </head>
 <body>
 
@@ -309,7 +309,7 @@
 
     <div class="ex-tabs">
         <button class="ex-tab active" data-ex="continuous" onclick="exSetTab(this)">Continuous Grasp</button>
-        <button class="ex-tab"        data-ex="cleanex"    onclick="exSetTab(this)">Open Cleanex</button>
+        <button class="ex-tab"        data-ex="cleanex"    onclick="exSetTab(this)">Open Clorox Bottle</button>
         <button class="ex-tab"        data-ex="multitask"  onclick="exSetTab(this)">Multi-Task</button>
     </div>
 
@@ -458,16 +458,33 @@
     <p class="body-text">
         We reuse a frozen <strong>bottle-grasp</strong> base policy and steer it in simulation by replacing the bottle with a carrot, an object the base policy was never trained on. A carrot is much thinner than a bottle and demands a precise pinch, a behavior that appears only with very low probability under the bottle-grasp prior. Even so, steering surfaces this rare in-support behavior: compared against the same policy <em>steered to grasp a bottle</em>, the carrot-steered policy improves substantially, showing that behaviors already in the prior&rsquo;s support can be repurposed toward new goals.
     </p>
-    <div class="rollout-grid">
-        <div class="rollout-col">
-            <div class="rollout-col-title">SCORE <em>(steered to bottle)</em></div>
-            <video src="static/videos/future/carrot/bottle/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note base-note"><span class="note-tag" style="color:var(--em);">Reference</span>The same bottle base policy steered in simulation to grasp a bottle.</div>
+    <div class="distractor-compare">
+        <div class="dc-stage"><span>In simulation</span></div>
+        <div class="rollout-grid" style="margin:0;">
+            <div class="rollout-col">
+                <div class="rollout-col-title">SCORE <em>(steered to bottle)</em></div>
+                <video src="static/videos/future/carrot/sim_bottle/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note base-note"><span class="note-tag" style="color:var(--em);">Reference</span>The same base policy steered in simulation to grasp a bottle, then inferenced on a carrot, so it still reaches as if the carrot were a bottle.</div>
+            </div>
+            <div class="rollout-col emerald-col">
+                <div class="rollout-col-title">SCORE <em>(steered to carrot)</em></div>
+                <video src="static/videos/future/carrot/sim_carrot/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>Steered to a carrot instead, the policy surfaces the rare in-support pinch and improves substantially over the bottle-steered result.</div>
+            </div>
         </div>
-        <div class="rollout-col emerald-col">
-            <div class="rollout-col-title">SCORE <em>(steered to carrot)</em></div>
-            <video src="static/videos/future/carrot/carrot/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>Steered to a carrot instead, the policy surfaces the rare in-support pinch and improves substantially over the bottle-steered result.</div>
+
+        <div class="dc-stage" style="margin-top:26px;"><span>On hardware</span></div>
+        <div class="rollout-grid" style="margin:0;">
+            <div class="rollout-col">
+                <div class="rollout-col-title">SCORE <em>(steered to bottle)</em></div>
+                <video src="static/videos/future/carrot/bottle/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note base-note"><span class="note-tag" style="color:var(--em);">Reference</span>The same bottle-steered policy inferenced on a carrot, now on the real robot.</div>
+            </div>
+            <div class="rollout-col emerald-col">
+                <div class="rollout-col-title">SCORE <em>(steered to carrot)</em></div>
+                <video src="static/videos/future/carrot/carrot/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>On hardware, steering to a carrot reaches 67% real-world success, far above the bottle-steered result.</div>
+            </div>
         </div>
     </div>
 
@@ -476,29 +493,33 @@
     <p class="body-text">
         The same bottle-grasp policy was trained on real data <strong>without distractors</strong>. Steering it in simulation to handle an added distractor recovers a lot of performance: 56% real-world success, up from 0% for the base policy and 11% for SCORE without distractors. But the simulation success map below reveals the catch: the policy succeeds almost only when the bottle is on one side of the workspace (&asymp;41.5% overall), defaulting to the right. The base policy&rsquo;s coverage and representation are too thin to absorb distractors across the whole workspace, so steering inherits a spatial bias rather than true robustness.
     </p>
-    <div class="rollout-grid">
-        <div class="rollout-col">
-            <div class="rollout-col-title">SCORE <em>(without distractors)</em></div>
-            <video src="static/videos/future/distractor/clean/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note base-note"><span class="note-tag">✗ Out-of-distribution</span>A distractor puts the base policy out-of-distribution, and the steering policy never learned to steer it through one, so it struggles.</div>
+    <div class="distractor-compare">
+        <div class="dc-stage"><span>In simulation</span></div>
+        <div class="rollout-grid" style="margin:0;">
+            <div class="rollout-col">
+                <div class="rollout-col-title">Base <em>(with distractor)</em></div>
+                <video src="static/videos/future/distractor/sim_base/ep_000.mp4?v=20260604h" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note base-note"><span class="note-tag">✗ Out-of-distribution</span>The distractor pushes the base bottle-grasp policy out of distribution, and it fails to find the grasp.</div>
+            </div>
+            <div class="rollout-col emerald-col">
+                <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
+                <video src="static/videos/future/distractor/sim_score/ep_000.mp4?v=20260604h" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note score-note"><span class="note-tag">~ Partial</span>Steering in simulation teaches the policy to grasp around the distractor, recovering 41.5% success, but mostly when the bottle is on the right side of the workspace.</div>
+            </div>
         </div>
-        <div class="rollout-col emerald-col">
-            <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
-            <video src="static/videos/future/distractor/distractor/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note score-note"><span class="note-tag">~ Partial</span>A distractor pushes the base policy heavily out-of-distribution, so steering becomes a much harder problem. It still recovers substantial success (56%), but only on one side of the workspace.</div>
-        </div>
-    </div>
 
-    <div class="rollout-grid" style="margin-top:20px;">
-        <div class="rollout-col">
-            <div class="rollout-col-title">Base <em>(with distractor)</em></div>
-            <video src="static/videos/future/distractor/real_base/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note base-note"><span class="note-tag">✗ Base policy</span>On the real robot, the base bottle-grasp policy collapses when a distractor is introduced.</div>
-        </div>
-        <div class="rollout-col emerald-col">
-            <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
-            <video src="static/videos/future/distractor/real_score/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
-            <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>Steering in simulation with a distractor recovers a working grasp on the real robot.</div>
+        <div class="dc-stage" style="margin-top:26px;"><span>On hardware</span></div>
+        <div class="rollout-grid" style="margin:0;">
+            <div class="rollout-col">
+                <div class="rollout-col-title">Base <em>(with distractor)</em></div>
+                <video src="static/videos/future/distractor/hw_base/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note base-note"><span class="note-tag">✗ Base policy</span>On the real robot, the base bottle-grasp policy collapses when a distractor is introduced.</div>
+            </div>
+            <div class="rollout-col emerald-col">
+                <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
+                <video src="static/videos/future/distractor/hw_score/ep_000.mp4?v=20260604i" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+                <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>That same steering carries over to hardware, recovering a working grasp on the real robot (56% success).</div>
+            </div>
         </div>
     </div>
 
@@ -581,7 +602,7 @@
 <!-- ════════════════ SCRIPTS ════════════════ -->
 <script src="static/js/sweep.js"></script>
 <script src="static/js/rollout.js?v=20260604b"></script>
-<script src="static/js/extras.js?v=20260604h"></script>
+<script src="static/js/extras.js?v=20260604i"></script>
 <script src="static/js/methods_sim.js?v=20260604b"></script>
 <script src="static/js/qualitative.js"></script>
 <script src="static/js/barcharts.js"></script>

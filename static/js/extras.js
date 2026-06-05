@@ -17,7 +17,7 @@
         },
         cleanex: {
             aspect: '4 / 3',
-            blurb: 'The base policy is often imprecise and does not use its retry behaviors correctly, so it struggles to recover once a grasp slips. SCORE makes the policy more precise and robust, retrying at the right moments to reliably open the Cleanex.',
+            blurb: 'The base policy is often imprecise and does not use its retry behaviors correctly, so it struggles to recover once a grasp slips. SCORE makes the policy more precise and robust, retrying at the right moments to reliably open the Clorox bottle.',
             base:  [{ src: V + 'extras/cleanex/base_0.mp4' },
                     { src: V + 'extras/cleanex/base_1.mp4' }],
             score: [{ src: V + 'extras/cleanex/score_0.mp4' },
