@@ -489,6 +489,19 @@
         </div>
     </div>
 
+    <div class="rollout-grid" style="margin-top:20px;">
+        <div class="rollout-col">
+            <div class="rollout-col-title">Base <em>(with distractor)</em></div>
+            <video src="static/videos/future/distractor/real_base/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+            <div class="rollout-note base-note"><span class="note-tag">✗ Base policy</span>On the real robot, the base bottle-grasp policy collapses when a distractor is introduced.</div>
+        </div>
+        <div class="rollout-col emerald-col">
+            <div class="rollout-col-title">SCORE <em>(steered, with distractor)</em></div>
+            <video src="static/videos/future/distractor/real_score/ep_000.mp4" autoplay loop muted playsinline style="width:100%;border-radius:10px;display:block;background:#000;"></video>
+            <div class="rollout-note score-note"><span class="note-tag">✓ SCORE behavior</span>Steering in simulation with a distractor recovers a working grasp on the real robot.</div>
+        </div>
+    </div>
+
     <figure class="polaroid wide-polaroid" style="margin-top:30px;">
         <a href="#" data-lb="static/figures/distractor_carrot.png">
             <img src="static/figures/distractor_carrot.png" alt="Quantitative results for carrot steering and distractor steering">
