@@ -6,7 +6,7 @@
     <title>SCORE: Support-Constrained Off-Domain Real-world Exploration</title>
     <meta name="description" content="Support-Constrained RL Enables Real-World Policy Improvement without Real-World Experience">
 
-    <link rel="preload" as="video" href="static/videos/SCOREv5.mp4" type="video/mp4" fetchpriority="high">
+    <link rel="preload" as="video" href="static/videos/SCOREv6.mp4" type="video/mp4" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
@@ -50,7 +50,7 @@
 
     <figure class="polaroid teaser-polaroid">
         <video id="hero-teaser-video" autoplay loop muted playsinline preload="auto" fetchpriority="high">
-            <source src="static/videos/SCOREv5.mp4" type="video/mp4">
+            <source src="static/videos/SCOREv6.mp4" type="video/mp4">
         </video>
     </figure>
 
@@ -134,8 +134,8 @@
     </p>
 
     <figure class="polaroid wide-polaroid" style="margin-top:14px;">
-        <a href="#" data-lb="static/figures/method2.png">
-            <img src="static/figures/method2.png" alt="SCORE method overview">
+        <a href="#" data-lb="static/figures/method3.png?v=20260609">
+            <img src="static/figures/method3.png?v=20260609" alt="SCORE method overview">
         </a>
         <figcaption>
             <strong>SCORE pipeline.</strong>
@@ -146,27 +146,36 @@
     </figure>
 
     <h3 class="sub-head" style="margin-top:38px;">Improvement in simulation</h3>
-    <p class="body-text">Inside the simulator, support-constrained RL steers the base policy toward higher-reward modes. We leverage massive domain randomization to make the resulting policies robust, randomizing object pose and placement, scale, mass, and applying force perturbations and forced resets, among others. Select a task to compare the base policy against SCORE in simulation.</p>
+    <p class="body-text">Inside the simulator, support-constrained RL steers the base policy toward higher-reward modes. We leverage massive domain randomization to make the resulting policies robust, randomizing object pose and placement, scale, mass, and applying force perturbations and forced resets, among others. Select a task and scrub through training time to watch the policy improve, step by step.</p>
 
     <div class="ms-tabs">
-        <button class="ms-tab active" data-ms="credit_card"   onclick="msSetTab(this)">Pick Credit Card</button>
-        <button class="ms-tab"        data-ms="dishrack_place" onclick="msSetTab(this)">Place in Dishrack</button>
-        <button class="ms-tab"        data-ms="lightbulb_screw" onclick="msSetTab(this)">Screw Lightbulb</button>
-        <button class="ms-tab"        data-ms="soccer_push"   onclick="msSetTab(this)">Push Soccer Ball</button>
+        <button class="ms-tab active" data-ms="lightbulb_screw" onclick="msSetTab(this)">Screw Lightbulb</button>
         <button class="ms-tab"        data-ms="cup_pour"      onclick="msSetTab(this)">Pour Ball</button>
+        <button class="ms-tab"        data-ms="soccer_push"   onclick="msSetTab(this)">Push Soccer Ball</button>
+        <button class="ms-tab"        data-ms="credit_card"   onclick="msSetTab(this)">Pick Credit Card</button>
+        <button class="ms-tab"        data-ms="dishrack_place" onclick="msSetTab(this)">Place in Dishrack</button>
         <button class="ms-tab"        data-ms="bottle_grasp"  onclick="msSetTab(this)">Grasp Bottle</button>
         <button class="ms-tab"        data-ms="cup_grasp"     onclick="msSetTab(this)">Grasp Cup</button>
         <button class="ms-tab"        data-ms="cube_grasp"    onclick="msSetTab(this)">Pinch Cube</button>
     </div>
 
-    <div class="rollout-grid">
-        <div class="rollout-col">
-            <div class="rollout-col-title">Base</div>
-            <div id="ms-base" class="ms-vid"></div>
+    <div class="tl-player">
+        <div class="tl-stage">
+            <video id="tl-video" autoplay muted playsinline></video>
+            <button id="tl-playpause" class="tl-playpause" aria-label="Play or pause">
+                <i class="fa-solid fa-pause"></i>
+            </button>
         </div>
-        <div class="rollout-col emerald-col">
-            <div class="rollout-col-title">SCORE <em>(ours)</em></div>
-            <div id="ms-score" class="ms-vid"></div>
+        <div class="tl-controls">
+            <div class="tl-readout"><span id="tl-step">Base Policy</span></div>
+            <div id="tl-track" class="tl-track" role="slider" tabindex="0"
+                 aria-label="Training progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="tl-rail"></div>
+                <div id="tl-fill" class="tl-fill"></div>
+                <div id="tl-ticks" class="tl-ticks"></div>
+                <div id="tl-thumb" class="tl-thumb"></div>
+            </div>
+            <div id="tl-labels" class="tl-labels"></div>
         </div>
     </div>
 
@@ -310,6 +319,7 @@
     <div class="ex-tabs">
         <button class="ex-tab active" data-ex="continuous" onclick="exSetTab(this)">Continuous Grasp</button>
         <button class="ex-tab"        data-ex="cleanex"    onclick="exSetTab(this)">Open Clorox Bottle</button>
+        <button class="ex-tab"        data-ex="bookshelf"  onclick="exSetTab(this)">Take Book Off Shelf</button>
         <button class="ex-tab"        data-ex="multitask"  onclick="exSetTab(this)">Multi-Task</button>
     </div>
 
@@ -570,7 +580,7 @@
             box-shadow:0 30px 80px rgba(0,0,0,0.6);
             display:block;
         ">
-            <source src="static/videos/SCOREv5.mp4" type="video/mp4">
+            <source src="static/videos/SCOREv6.mp4" type="video/mp4">
         </video>
         <button onclick="closeVideoLb()" style="
             position:absolute; top:-14px; right:-14px;
@@ -603,7 +613,7 @@
 <script src="static/js/sweep.js"></script>
 <script src="static/js/rollout.js?v=20260604b"></script>
 <script src="static/js/extras.js?v=20260604i"></script>
-<script src="static/js/methods_sim.js?v=20260604b"></script>
+<script src="static/js/methods_sim.js?v=20260610g"></script>
 <script src="static/js/qualitative.js"></script>
 <script src="static/js/barcharts.js"></script>
 <script src="static/js/task-results.js?v=20260528q"></script>

@@ -23,6 +23,14 @@
             score: [{ src: V + 'extras/cleanex/score_0.mp4' },
                     { src: V + 'extras/cleanex/score_1.mp4' }]
         },
+        bookshelf: {
+            aspect: '4 / 3',
+            blurb: 'The base policy struggles to take a book off the shelf, often slipping off the spine or failing to pull it clear. SCORE makes the grasp more precise and reliable, hooking the book and pulling it out cleanly.',
+            base:  [{ src: V + 'extras/bookshelf/base_0.mp4' },
+                    { src: V + 'extras/bookshelf/base_1.mp4' }],
+            score: [{ src: V + 'extras/bookshelf/score_0.mp4' },
+                    { src: V + 'extras/bookshelf/score_1.mp4' }]
+        },
         multitask: {
             aspect: '4 / 3',
             blurb: 'A single multi-task policy trained on three tasks: credit card pick, cube grasp, and bottle grasp. The base policy often confuses the modes of each task. In the credit card clip it reaches in with the grasp meant for the bottle, while in the cube and bottle clips it pinches as if picking up the thin credit card, so it applies the wrong strategy for the object in front of it. SCORE learns to pick the right mode for each: a pinch for the credit card and a stable grasp for the cube and the bottle.',
